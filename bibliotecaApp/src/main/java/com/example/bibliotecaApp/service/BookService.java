@@ -12,9 +12,9 @@ public class BookService {
     
     @Autowired
     private BookRepository bookRepository;
-    
-    public List<Book> getBookByTitle (String title){
-        return bookRepository.findBytitle(title);
-    } 
-    
+
+    public List<Book> getBookByTitleLike (String title){
+        return bookRepository.searchByTitleLike(title);
+    }
+
 }

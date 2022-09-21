@@ -27,11 +27,13 @@ public class Book {
     private Integer page;
     private String edit;
 
+    private String img;
+
     public Book() {
     }
 
     
-    public Book(Integer id, String title, String date, String author, Integer available, Integer stock, String category, String description, String copies, String lang, Integer page) {
+    public Book(Integer id, String title, String date, String author, Integer available, Integer stock, String category, String description, String copies, String lang, Integer page, String edit, String img) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -43,6 +45,7 @@ public class Book {
         this.ejemplares = copies;
         this.lang = lang;
         this.page = page;
+        this.img = img;
     }
 
     
@@ -140,6 +143,14 @@ public class Book {
 
     public void setEdit(String edit) {
         this.edit = edit;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
  
     

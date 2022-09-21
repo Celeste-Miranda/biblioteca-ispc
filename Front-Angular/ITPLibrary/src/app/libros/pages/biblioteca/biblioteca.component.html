@@ -1,0 +1,14 @@
+
+<div class="titulo d-flex justify-content-center">
+<h3>Biblioteca Virtual</h3>
+</div>
+
+<div class="buscador d-flex justify-content-center">
+<app-buscador-libros (onEnter)="buscar($event)"></app-buscador-libros></div>
+
+<div *ngIf="hayError"
+ class="alert alert-danger">
+    <p>No se encontró nada con el término {{termino}}</p>
+</div>
+
+<app-tabla-libros [libros]="libros"> </app-tabla-libros>
