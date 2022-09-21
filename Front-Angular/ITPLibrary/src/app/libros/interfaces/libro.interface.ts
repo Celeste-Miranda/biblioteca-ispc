@@ -1,16 +1,15 @@
 export interface Libro {
-    id: number;
-    title: string;
-    date: string;
-    category: string;
-    edit: string;
-    lang: string;
-    pages: number;
-    author: string;
+    id:          number;
+    title:       string;
+    date:        string;
+    author:      string;
+    available:   number;
+    stock:       number;
+    category:    string;
     description: string;
-    ejemplares: number;
-    stock: number;
-    available: number;
-    img: string;
-
+    lang:        string;
+    page:        number;
+    edit:        string;
+    img:         string;
+    copies:      string;
 }

@@ -5,6 +5,7 @@ import { BibliotecaComponent } from './pages/biblioteca/biblioteca.component';
 import { FiltroLibrosComponent } from './components/filtro-libros/filtro-libros.component';
 import { BuscadorLibrosComponent } from './components/buscador-libros/buscador-libros.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     TablaLibrosComponent,

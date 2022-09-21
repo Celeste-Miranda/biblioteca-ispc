@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/book")
+
 public class BookController {
     @Autowired
     private BookService bookService;
     
     @GetMapping()
-    public ResponseEntity<Book> getBook (@RequestParam (value = "title") String title ){
-        return new ResponseEntity(bookService.getBookByTitle(title),HttpStatus.OK);
+    public ResponseEntity<Book[]> getBook (@RequestParam (value = "title") String title ){
+        return new ResponseEntity(bookService.getBookByTitleLike(title),HttpStatus.OK);
     }
+
+
+
 }

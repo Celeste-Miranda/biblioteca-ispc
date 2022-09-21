@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LibrosModule } from './libros/libros.module';
 import { HomeComponent } from './shared/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { HomeComponent } from './shared/home/home.component';
     MdbTooltipModule,
     MdbValidationModule,
     BrowserAnimationsModule,
-    LibrosModule
+    LibrosModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
