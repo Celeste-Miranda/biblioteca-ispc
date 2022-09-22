@@ -17,4 +17,8 @@ public class BookService {
         return bookRepository.searchByTitleLike(title);
     }
 
+    public Book getBookById (String id){
+        return bookRepository.searchById(Integer.parseInt(id));
+    }
+
 }

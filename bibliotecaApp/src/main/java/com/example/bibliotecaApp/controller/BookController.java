@@ -24,6 +24,11 @@ public class BookController {
         return new ResponseEntity(bookService.getBookByTitleLike(title),HttpStatus.OK);
     }
 
+    @GetMapping("/")
+    public ResponseEntity<Book> getBookById (@RequestParam (value = "id") String id){
+        return new ResponseEntity(bookService.getBookById(id),HttpStatus.OK);
+    }
+
 
 
 }
