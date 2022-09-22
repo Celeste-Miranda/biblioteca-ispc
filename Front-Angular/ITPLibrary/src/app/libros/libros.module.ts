@@ -6,6 +6,7 @@ import { FiltroLibrosComponent } from './components/filtro-libros/filtro-libros.
 import { BuscadorLibrosComponent } from './components/buscador-libros/buscador-libros.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { LibroComponent } from './pages/libro/libro.component';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     TablaLibrosComponent,
     BibliotecaComponent,
     FiltroLibrosComponent,
-    BuscadorLibrosComponent
+    BuscadorLibrosComponent,
+    LibroComponent
   ],
   imports: [
     CommonModule,
