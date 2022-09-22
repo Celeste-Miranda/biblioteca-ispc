@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BibliotecaComponent } from './libros/pages/biblioteca/biblioteca.component';
 import { HomeComponent } from './shared/home/home.component';
+import { LibroComponent } from './libros/pages/libro/libro.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
     path: 'biblioteca',
     component: BibliotecaComponent
   },
+  {
+    path: 'libro/:id',
+    component: LibroComponent
+  }
 ];
 
 @NgModule({

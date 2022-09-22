@@ -21,4 +21,12 @@ export class LibrosService {
         return this.http.get<Libro[]>(url);
     }
 
+    getLibroId( id: string ): Observable<Libro>{
+      
+        const url = `${ this.apiUrl }/book/${id}`;
+        
+        return this.http.get<Libro>(url); //retorna solo un pais no un arreglo
+    
+      }
+
 }
