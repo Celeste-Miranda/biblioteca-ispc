@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                .and()
                .authorizeRequests()
                .antMatchers("/register","/login").anonymous()
-               .antMatchers("/bokks ").permitAll()
+               .antMatchers("/book", "/book/").permitAll()
                .anyRequest().authenticated()
                .and().addFilterBefore(jwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
         
