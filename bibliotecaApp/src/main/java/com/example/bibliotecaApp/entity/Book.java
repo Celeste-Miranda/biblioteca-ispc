@@ -24,7 +24,7 @@ public class Book {
     private String description;
     private String ejemplares;
     private String lang;
-    private Integer page;
+    private Integer pages;
     private String edit;
 
     private String img;
@@ -33,7 +33,7 @@ public class Book {
     }
 
     
-    public Book(Integer id, String title, String date, String author, Integer available, Integer stock, String category, String description, String copies, String lang, Integer page, String edit, String img) {
+    public Book(Integer id, String title, String date, String author, Integer available, Integer stock, String category, String description, String copies, String lang, Integer pages, String edit, String img) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -44,7 +44,7 @@ public class Book {
         this.description = description;
         this.ejemplares = copies;
         this.lang = lang;
-        this.page = page;
+        this.pages = pages;
         this.img = img;
     }
 
@@ -129,12 +129,12 @@ public class Book {
         this.lang = lang;
     }
 
-    public Integer getPage() {
-        return page;
+    public Integer getPages() {
+        return pages;
     }
 
-    public void setPage(Integer page) {
-        this.page = page;
+    public void setPages(Integer page) {
+        this.pages = pages;
     }
 
     public String getEdit() {

@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,body {
+    margin: 10px;
+    background-color: var(--surface-b);
+    font-family: var(--font-family);
+  } 
+
+
+  .icono {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logotipo {
+    display: flex;
+    align-items:center;
+ }
+
+ .paddeado {
+    padding: 20px;
+ }

@@ -1,0 +1,27 @@
+<p-table [value]="libros" responsiveLayout="scroll" selectionMode="single" selection="" >
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Portada</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Editorial</th>
+            <th>Disponibilidad</th>
+            <th>Idioma</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-libro>
+        <tr class="clickeable-row">
+            <td><img src="{{libro.img}}" alt="{{libro.title}}" width="100" height="150"></td>
+            <td>{{libro.title | titlecase}}</td>
+            <td>{{libro.author | titlecase}}</td>
+            <td>{{libro.edit | titlecase}}</td>
+            <td><p-badge value="{{libro.available | disponibilidadText}}" severity="{{libro.available | disponibilidad}}"></p-badge></td>
+            <td><i class="{{libro.lang | bandera}}"></i></td>
+            <td>
+                <button type="button" pButton pRipple icon="pi pi-search" routerLink="/libro/?id={{libro.id}}" ></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
