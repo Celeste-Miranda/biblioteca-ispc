@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BanderaPipe } from './pipes/bandera.pipe';
 import { DisponibilidadPipe } from './pipes/disponibilidad.pipe';
 import { DisponibilidadTextPipe } from './pipes/disponibilidad-text.pipe';
+import { LibrosRoutingModule } from './libros-routing.module';
 
 
 
@@ -27,7 +28,8 @@ import { DisponibilidadTextPipe } from './pipes/disponibilidad-text.pipe';
   imports: [
     CommonModule,
     FormsModule,
-    PrimeNgModule
+    PrimeNgModule,
+    LibrosRoutingModule
   ],
   exports: [
     HttpClientModule,

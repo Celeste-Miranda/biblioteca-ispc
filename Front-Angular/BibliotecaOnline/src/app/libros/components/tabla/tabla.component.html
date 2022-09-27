@@ -19,7 +19,7 @@
             <td><p-badge value="{{libro.available | disponibilidadText}}" severity="{{libro.available | disponibilidad}}"></p-badge></td>
             <td><i class="{{libro.lang | bandera}}"></i></td>
             <td>
-                <button type="button" pButton pRipple icon="pi pi-search" routerLink="/libro/?id={{libro.id}}" ></button>
+                <button type="button" pButton pRipple icon="pi pi-search" routerLink="/libros/libro/?id={{libro.id}}" ></button>
             </td>
         </tr>
     </ng-template>

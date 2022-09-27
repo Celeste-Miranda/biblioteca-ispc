@@ -4,13 +4,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { MenubarModule } from 'primeng/menubar';
+import { ErrorComponent } from './error/error.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,

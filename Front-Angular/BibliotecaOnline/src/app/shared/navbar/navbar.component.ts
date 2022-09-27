@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
         {
           label: 'Cátalogo Biblioteca',
           icon: 'pi pi-book',
-          routerLink: 'biblioteca'
+          routerLink: 'libros/biblioteca'
         }]
   },
   {
@@ -34,12 +34,12 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Iniciar Sesion',
         icon: 'pi pi-sign-in',
-        routerLink: 'login'
+        routerLink: 'auth/login'
       },
       {
         label: 'Registrarse',
         icon: 'pi pi-user-plus',
-        routerLink: 'registro'
+        routerLink: 'auth/register'
       }
     ]
   }

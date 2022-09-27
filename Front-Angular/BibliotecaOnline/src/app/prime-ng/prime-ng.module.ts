@@ -8,6 +8,8 @@ import {BadgeModule} from 'primeng/badge';
 import {FieldsetModule} from 'primeng/fieldset';
 import {ChipsModule} from 'primeng/chips';
 import { ChipModule } from 'primeng/chip';
+import {CheckboxModule} from 'primeng/checkbox';
+import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
 
 @NgModule({
   declarations: [],
@@ -19,7 +21,9 @@ exports: [
     BadgeModule,
     FieldsetModule,
     ChipsModule,
-    ChipModule
+    ChipModule,
+    CheckboxModule,
+    TriStateCheckboxModule
     
   ]
 })
