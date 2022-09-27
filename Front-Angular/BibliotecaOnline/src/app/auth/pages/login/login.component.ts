@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +19,25 @@ export class LoginComponent {
 
   });
 
-  constructor( private fb: FormBuilder) { }
+  constructor( private fb: FormBuilder,
+              private router: Router,
+              private authService: AuthService) { }
 
 login(){
 
-  console.log(this.miFormulario.value)
-  console.log(this.miFormulario.valid) 
+  const { username, password} = this.miFormulario.value;
+
+ this.authService.login(username,password)
+ .subscribe(ok => {
+  // console.log(ok);
+  if (ok) {
+    this.router.navigateByUrl('/dashboard')
+  } else {
+    //MOSTRAR MENSAJE ERROR
+    console.log("ERROR PAPÁ")
+  }
+ });
+  //this.router.navigateByUrl('/dashboard')
 
 }
 }
