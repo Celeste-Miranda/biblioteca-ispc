@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 import { AuthResponse, User } from '../interfaces/auth.interfaces';
@@ -30,6 +30,7 @@ export class AuthService {
    .pipe(
     tap( resp => {
       if (resp.bearer === "Bearer") {
+        localStorage.setItem('token' , ('Bearer ' + resp.token!)) //Confia en mi typescript ermozo
         this._user = {
           username: resp.username!
         }
@@ -41,6 +42,17 @@ export class AuthService {
    )
   }
 
+  //PARA HACER/TESTEAR
+  validarToken() {
+
+    const url = `${this.baseUrl}/valid`;
+    const headers = new HttpHeaders()
+    .set('Authorization',localStorage.getItem('token') || ''); // o String vacio. 
+    return this.http.get(url, { headers });
+
+//SETEAR EN EL LOCALSTORAGE el token como  "Bearer (espacio) valordelToken" para que tome bien 
+//SHA ESTÁ ESHHOOO
+  }
 
 
 }
