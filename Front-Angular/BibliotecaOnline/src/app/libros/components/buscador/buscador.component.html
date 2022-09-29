@@ -1,0 +1,13 @@
+<form (ngSubmit)="buscar()" autocomplete="off">
+<div class="grid p-fluid">
+    <div class="col-12">
+        <div class="p-inputgroup">
+            <button type="button" pButton pRipple (click)="buscar()"><i class="pi pi-search"></i></button>
+            <input type="text" 
+            name="termino"
+            placeholder="Buscar Libro..."
+            [(ngModel)]="termino"
+            >         
+        </div>
+    </div>
+    <form>

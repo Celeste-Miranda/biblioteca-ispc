@@ -1,0 +1,8 @@
+<div class="box paddeado"> <app-buscador (onEnter)="buscar($event)"></app-buscador></div>
+
+<div *ngIf="hayError"
+ class="alert alert-danger">
+    <p>No se encontró nada con el término {{termino}}</p>
+</div>
+
+<app-tabla [libros]="libros"></app-tabla>

@@ -16,9 +16,11 @@ public class JwtDto {
      private String token;
     private String bearer = "Bearer";
     private String username;
+    private String role;
 
-    public JwtDto(String jwt, String username) {
+    public JwtDto(String jwt, String username, String role) {
         this.token=jwt;
         this.username=username;
+        this.role = role;
     }
 }

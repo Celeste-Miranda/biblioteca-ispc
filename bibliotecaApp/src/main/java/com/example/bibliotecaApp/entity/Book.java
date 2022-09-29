@@ -2,58 +2,55 @@
 package com.example.bibliotecaApp.entity;
 
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "books")
 public class Book {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
+    @NotBlank(message = "El campo titulo no puede ser vario o nulo")
     private String title;
+    @NotNull(message = "El campo fecha de publicacion no puede ser vario o nulo")
     private String date;
+    private Date createdAt;
+    @NotBlank(message = "El campo Autor no puede ser vario o nulo")
     private String author;
     private Integer available;
+    @NotNull(message ="El campo stock no puede ser vario o nulo" )
     private Integer stock;
+    @NotBlank(message = "El campo Categoria no puede ser vario o nulo")
     private String category;
     private String description;
-    private String ejemplares;
+    @NotNull(message ="El campo ejemplares no puede ser vario o nulo" )
+    private Integer ejemplares;
+    @NotBlank(message = "El campo idioma no puede ser vario o nulo")
     private String lang;
-    private Integer page;
+    @NotNull(message ="El campo stock no puede ser vario o nulo" )
+    private Integer pages;
+    @NotBlank(message = "El campo Edicion no puede ser vario o nulo")
     private String edit;
-
     private String img;
 
     public Book() {
     }
 
     
-    public Book(Integer id, String title, String date, String author, Integer available, Integer stock, String category, String description, String copies, String lang, Integer page, String edit, String img) {
-        this.id = id;
-        this.title = title;
-        this.date = date;
-        this.author = author;
-        this.available = available;
-        this.stock = stock;
-        this.category = category;
-        this.description = description;
-        this.ejemplares = copies;
-        this.lang = lang;
-        this.page = page;
-        this.img = img;
-    }
+
 
     
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,15 +62,7 @@ public class Book {
         this.title = title;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getAuthor() {
+     public String getAuthor() {
         return author;
     }
 
@@ -113,14 +102,6 @@ public class Book {
         this.description = description;
     }
 
-    public String getCopies() {
-        return ejemplares;
-    }
-
-    public void setCopies(String copies) {
-        this.ejemplares = copies;
-    }
-
     public String getLang() {
         return lang;
     }
@@ -129,12 +110,12 @@ public class Book {
         this.lang = lang;
     }
 
-    public Integer getPage() {
-        return page;
+    public Integer getPages() {
+        return pages;
     }
 
-    public void setPage(Integer page) {
-        this.page = page;
+    public void setPages(Integer pages) {
+        this.pages = pages;
     }
 
     public String getEdit() {
@@ -152,8 +133,28 @@ public class Book {
     public void setImg(String img) {
         this.img = img;
     }
- 
-    
-    
-    
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Integer getEjemplares() {
+        return ejemplares;
+    }
+
+    public void setEjemplares(Integer ejemplares) {
+        this.ejemplares = ejemplares;
+    }
 }

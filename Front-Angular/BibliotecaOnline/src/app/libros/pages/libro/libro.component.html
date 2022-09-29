@@ -1,0 +1,87 @@
+<div class="grid" style="padding-left: 90px; padding-top: 30px;">
+<div class="col-3"> 
+    <h2>{{libro.title}}</h2>
+<img src="{{libro.img}}" alt="">
+<br><br>
+<span style="padding-left: 70px;">
+    
+    
+    <button 
+    *ngIf="libro.available>0"
+    pButton pRipple type="button" 
+    label="Pedir Prestamo" 
+    class="p-button-rounded 
+    p-button-success">
+    
+    </button>
+
+    <button 
+    *ngIf="libro.available===0"
+    pButton pRipple type="button" 
+    label="No Disponible" 
+    class="p-button-rounded 
+    p-button-danger">
+    
+    </button>
+
+
+
+
+</span>
+</div>
+<div class="col" style="padding-top: 50px;"> 
+    
+    <div class="surface-section">
+        <div class="font-medium text-3xl text-900 mb-3">Información del Libro</div>
+        <div class="text-500 mb-5">{{libro.description}}</div>
+        <ul class="list-none p-0 m-0">
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Titulo</div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{libro.title | titlecase}}</div>
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
+                </div>
+            </li>
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Categoria</div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+                    <p-chip label="{{libro.category}}" class="mr-2"></p-chip>
+                </div>
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
+                </div>
+            </li>
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Autor</div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{libro.author}}</div>
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
+                </div>
+            </li>
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Editorial </div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{libro.edit}}</div>
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
+                </div>
+            </li>
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Páginas </div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{libro.pages | number}}</div>
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
+                </div>
+            </li>
+            <li class="flex align-items-center py-3 px-2 border-top-1 border-bottom-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Lenguaje</div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1 line-height-3">
+                    {{libro.lang}}</div>
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"></button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</div>

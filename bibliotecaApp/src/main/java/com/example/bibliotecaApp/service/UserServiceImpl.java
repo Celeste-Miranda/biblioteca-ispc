@@ -6,14 +6,18 @@
 package com.example.bibliotecaApp.service;
 
 
-import com.example.bibliotecaApp.entity.User;
+import com.example.bibliotecaApp.entity.UserApp;
 import com.example.bibliotecaApp.entity.UserCredential;
 import com.example.bibliotecaApp.enums.ROLE;
+import com.example.bibliotecaApp.exception.BadRequestException;
 import com.example.bibliotecaApp.exception.InvalidDataException;
 import com.example.bibliotecaApp.repository.UserCredentialRepository;
 import com.example.bibliotecaApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,7 +48,7 @@ UserCredentialRepository userCredentialRepository;
 
 
  
-    public void createUser (User user, BindingResult bindingResult){
+    public void createUser (UserApp userApp, BindingResult bindingResult){
         boolean isAdmin = SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains( new SimpleGrantedAuthority( "ADMINISTRADOR" ));
 
 
@@ -52,14 +56,14 @@ UserCredentialRepository userCredentialRepository;
             throw new InvalidDataException(bindingResult);
         }
 
-        if(existsUsername(user.getUserCredential().getUsername())) {
-            throw new DuplicateKeyException("Ya existe usuario con email: " + user.getUserCredential().getUsername());
+        if(existsUsername(userApp.getUserCredential().getUsername())) {
+            throw new DuplicateKeyException("Ya existe usuario con email: " + userApp.getUserCredential().getUsername());
         }
         if (!isAdmin){
-            user.getUserCredential().setRole(ROLE.USUARIO);
+            userApp.getUserCredential().setRole(ROLE.USUARIO);
         }
-        user.getUserCredential().setPassword(encoder.encode(user.getUserCredential().getPassword()));
-        userRepository.save(user);
+        userApp.getUserCredential().setPassword(encoder.encode(userApp.getUserCredential().getPassword()));
+        userRepository.save(userApp);
         
     }
     
@@ -83,6 +87,47 @@ UserCredentialRepository userCredentialRepository;
                
        return user;
     }
-    
-    
+
+    public Page<UserApp> getUsers(String dni, String  name, String lastname, Integer pageSize, Integer numberPage){
+        Pageable pageable = null;
+
+        if (pageSize!=null && numberPage != null) {
+            pageable = PageRequest.of(numberPage,pageSize);
+        }
+        return userRepository.getUserBy(name,lastname,dni,pageable);
+
+    }
+
+    public void deleteUser(Long id){
+        if (userRepository.existLendingByUserId(id)){
+            throw new BadRequestException("No se puede eliminar el usuario porque tiene prestamos pendientes");
+        }
+        userRepository.deleteUserCredentialId(id);
+        userRepository.deleteUserId(id);
+    }
+
+    public void updateUser (Long id , UserApp userApp){
+        UserApp oldUserApp = userRepository.findById(id).orElseThrow( ()-> new BadRequestException("Usuario inexistente"));
+        UserCredential userCredential = userCredentialRepository.findById(oldUserApp.getUserCredential().getId()).orElse(null);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        boolean isAdmin = SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains( new SimpleGrantedAuthority( "ADMINISTRADOR" ));
+
+        if (!isAdmin && !userCredential.getUsername().equals(userDetails.getUsername())){
+            throw new BadRequestException("No tiene permiso para realizar esta accion");
+        }
+
+        oldUserApp.setAddress(userApp.getAddress());
+        oldUserApp.setDni(userApp.getDni());
+        oldUserApp.setLastname(userApp.getLastname());
+        oldUserApp.setName(userApp.getName());
+        oldUserApp.setTel(userApp.getTel());
+
+        userRepository.save(oldUserApp);
+
+    }
+
+    public UserApp getUserDetail(Long id){
+        return userRepository.findById(id).orElseThrow(()-> new BadRequestException("No se econtro el usuario con el id " + id));
+    }
 }
