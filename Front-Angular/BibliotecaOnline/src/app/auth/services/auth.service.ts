@@ -19,29 +19,30 @@ export class AuthService {
 
   constructor( private http: HttpClient) { }
 
-  register(name: string, lastname: string, address: string, tel: number, username: string, password: string    ){
-    const url = `${this.baseUrl}/register`;
-    const body = {name, lastname, address, tel, username, password}
+  register(name: string, lastname: string, address: string, tel: number, dni: number, userCredential:[ username: string, password: string ] ){
 
-    return this.http.post<AuthResponse>(url, body)
-    .pipe(
-      tap( resp => {
-        if (resp.bearer === "Bearer") {
-          localStorage.setItem('token' , ('Bearer ' + resp.token!)) //Confia en mi typescript ermozo
-          this._user = {
-            username: resp.username!
-          }
+   
+    const url = `${ this.baseUrl}/register`;
+    const body = { name, lastname, address, tel, dni, userCredential };
+
+   return this.http.post<AuthResponse>(url, body)
+   .pipe(
+    tap( resp => {
+      if (resp.ok === true) {
+        console.log('Registro exitoso') //Confia en mi typescript ermozo
+        this._user = {
+          username: resp.username!
         }
-      }),
-      map(resp => of(resp.bearer)),
-      catchError(err => of(false))
-       
-     )
-    
-
-
-
+      }
+    }),
+    map(resp => of(resp.ok)),
+    catchError(err => of(false))
+     
+   )
   }
+
+
+  
 
   login ( username: string, password: string ) {
 
@@ -62,6 +63,10 @@ export class AuthService {
     catchError(err => of(false))
      
    )
+  }
+
+  logout() {
+    localStorage.removeItem('token'); // Solo borra el token. Si es todo hacer Clear()
   }
 
   //PARA HACER/TESTEAR

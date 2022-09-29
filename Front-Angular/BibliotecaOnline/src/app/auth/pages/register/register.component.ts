@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ok } from 'assert';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +17,7 @@ export class RegisterComponent {
     lastname: ['',[Validators.required]],
     address: ["",[Validators.required]],
     tel: ["",[Validators.required]],
+    dni: ["",[Validators.required]],
     userCredential: this.fb.group({
     username: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -22,13 +25,25 @@ export class RegisterComponent {
   });
 
   constructor( private fb: FormBuilder,
-               private router: Router) { }
+               private router: Router,
+               private authService: AuthService) { }
 
 register(){
+  const {name, lastname, address, tel, dni, userCredential} = this.miFormulario.value;
+
+
+  this.authService.register(name, lastname, address, tel, dni, userCredential)
+  .subscribe(ok => {
+    if (ok) { 
+      this.router.navigateByUrl('/auth/login');
+    } else {
+      console.log("Error en el registro");
+    }
+  })
+
 
   console.log(this.miFormulario.value)
-  console.log(this.miFormulario.valid) 
-  this.router.navigateByUrl('/dashboard')
+
 
 
 }
