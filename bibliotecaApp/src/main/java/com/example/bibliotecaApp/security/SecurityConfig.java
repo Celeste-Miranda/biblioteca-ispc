@@ -22,6 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity (prePostEnabled = true)
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
@@ -52,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                .and()
                .authorizeRequests()
                .antMatchers("/register","/login").anonymous()
-               .antMatchers("/book", "/book/").permitAll()
+               .antMatchers(  "/valid" , "/books", "/books/").permitAll()
                .anyRequest().authenticated()
                .and().addFilterBefore(jwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
         

@@ -5,6 +5,7 @@ import { HomeComponent } from './shared/home/home.component';
 import { BibliotecaComponent } from './libros/pages/biblioteca/biblioteca.component';
 import { LibroComponent } from './libros/pages/libro/libro.component';
 import { ErrorComponent } from './shared/error/error.component';
+import { ValidarTokenGuard } from './guards/validar-token.guard';
 
 const routes: Routes = [
   {
@@ -13,8 +14,11 @@ const routes: Routes = [
   },
   {
      path: 'dashboard',
-     loadChildren: () => import('./protected/protected.module').then(m => m.ProtectedModule)
-
+     loadChildren: () => import('./protected/protected.module').then(m => m.ProtectedModule),
+     canActivate: [
+      ValidarTokenGuard
+     ]
+       
   },
   {
     path: 'libros',

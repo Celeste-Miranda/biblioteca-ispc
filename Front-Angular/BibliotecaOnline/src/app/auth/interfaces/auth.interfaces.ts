@@ -5,7 +5,7 @@ export interface AuthResponse{
      timestamp?: string
      errors?: string
      token?: string
-     bearer?: string
+     bearer? : string
      username?: string
 }
 

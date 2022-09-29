@@ -16,14 +16,14 @@ export class LibrosService {
 
     buscarLibros(termino: string): Observable<Libro[]> {
        
-        const url = `${this.apiUrl}/book?title=${termino}`;
+        const url = `${this.apiUrl}/books?title=${termino}`;
 
         return this.http.get<Libro[]>(url);
     }
 
     getLibroId( id: string ): Observable<Libro>{
       
-        const url = `${ this.apiUrl }/book/${id}`;
+        const url = `${ this.apiUrl }/books/${id}`;
         
         return this.http.get<Libro>(url); //retorna solo un pais no un arreglo
     
