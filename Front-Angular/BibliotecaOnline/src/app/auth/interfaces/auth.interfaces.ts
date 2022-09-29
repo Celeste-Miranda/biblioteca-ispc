@@ -1,5 +1,5 @@
 export interface AuthResponse{
-    
+     ok?: boolean;
      status?: number
      message?: string
      timestamp?: string
