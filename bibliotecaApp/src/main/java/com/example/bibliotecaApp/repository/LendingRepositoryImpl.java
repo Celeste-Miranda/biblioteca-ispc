@@ -2,7 +2,6 @@ package com.example.bibliotecaApp.repository;
 
 import com.example.bibliotecaApp.entity.Lending;
 import com.example.bibliotecaApp.entity.LendingDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -38,15 +37,15 @@ public class LendingRepositoryImpl {
                     }
                     break;
                 case "dni":
-                    predicates.add(cb.like(root.get("user").get("dni"),field.getValue().toString()));
+                    predicates.add(cb.like(root.get("userApp").get("dni"),field.getValue().toString()));
                     break;
 
             }
         }
         query.select(cb.construct(LendingDTO.class,
                 root.get("id"),
-                root.get("user"),
-                root.get("book"),
+                root.get("userApp").get("id"),
+                root.get("book").get("id"),
                 root.get("dateOut"),
                 root.get("dateReturn"),
                 root.get("returnEstimateDate"),
@@ -77,7 +76,7 @@ public class LendingRepositoryImpl {
                     predicates.add(cb.isNull(root.get("dateReturn")));
                     break;
                 case "dni":
-                    predicates.add(cb.like(root.get("user").get("dni"),field.getValue().toString()));
+                    predicates.add(cb.like(root.get("userApp").get("dni"),field.getValue().toString()));
                     break;
 
             }

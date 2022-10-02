@@ -2,6 +2,7 @@
 package com.example.bibliotecaApp.controller;
 
 
+import com.example.bibliotecaApp.exception.BadRequestException;
 import com.example.bibliotecaApp.exception.ErrorApp;
 import com.example.bibliotecaApp.exception.InvalidDataException;
 import org.springframework.dao.DuplicateKeyException;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -51,6 +53,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
     return buildResponseEntity(httpStatus, new RuntimeException("Tipo de Argumento invalido"));
   }
+
+  @ExceptionHandler
+  protected ResponseEntity<ErrorApp> handleException(BadRequestException exc) {
+    HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+    return buildResponseEntity(httpStatus,exc);
+  }
+
 
   @ExceptionHandler
   protected ResponseEntity<ErrorApp> handleException(Exception exc) {

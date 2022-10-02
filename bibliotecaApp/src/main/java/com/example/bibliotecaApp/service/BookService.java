@@ -88,7 +88,7 @@ public class BookService {
         updateAvailable(oldBook);
     }
 
-    private void updateAvailable(Book oldBook){
+    public void updateAvailable(Book oldBook){
         oldBook.setAvailable(bookRepository.getAvailableById(oldBook.getId()));
         bookRepository.save(oldBook);
     }

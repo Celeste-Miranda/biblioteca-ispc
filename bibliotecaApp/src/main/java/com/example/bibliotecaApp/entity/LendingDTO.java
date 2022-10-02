@@ -6,8 +6,8 @@ import java.util.Date;
 public class LendingDTO {
 
     private Long id;
-    private UserApp userApp;
-    private Book book;
+    private Long userAppId;
+    private Long bookId;
     private Date dateOut;
     private Date dateReturn;
     private Date returnEstimateDate;
@@ -17,13 +17,31 @@ public class LendingDTO {
     public LendingDTO() {
     }
 
-    public LendingDTO(Long id, UserApp userApp, Book book, Date dateOut, Date dateReturn, Date returnEstimateDate) {
+    public LendingDTO(Long id, Long userAppId, Long bookId, Date dateOut, Date dateReturn, Date returnEstimateDate, Integer sanctions, Integer sancMoney) {
         this.id = id;
-        this.userApp = userApp;
-        this.book = book;
+        this.userAppId = userAppId;
+        this.bookId = bookId;
         this.dateOut = dateOut;
         this.dateReturn = dateReturn;
         this.returnEstimateDate = returnEstimateDate;
+        this.sanctions = sanctions;
+        this.sancMoney = sancMoney;
+    }
+
+    public Long getUserAppId() {
+        return userAppId;
+    }
+
+    public void setUserAppId(Long userAppId) {
+        this.userAppId = userAppId;
+    }
+
+    public Long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
     }
 
     public Long getId() {
@@ -34,21 +52,7 @@ public class LendingDTO {
         this.id = id;
     }
 
-    public UserApp getUser() {
-        return userApp;
-    }
 
-    public void setUser(UserApp userApp) {
-        this.userApp = userApp;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
 
     public Date getDateOut() {
         return dateOut;

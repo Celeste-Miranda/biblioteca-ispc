@@ -17,7 +17,6 @@ public class LendingController {
     private LendingService lendingService;
 
     @GetMapping("")
-    @PreAuthorize("hasRole('ADMINISTRADOR')")
     public ResponseEntity<?> getAllLending (@RequestParam (value = "pending", required = false) Boolean pending,
                                             @RequestParam (value = "numberPage",required = false) Integer numberPage,
                                             @RequestParam (value = "pageSize",required = false) Integer pageSize,

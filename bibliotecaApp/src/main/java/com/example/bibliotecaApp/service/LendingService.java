@@ -25,8 +25,17 @@ public class LendingService {
     private UserRepository userRepository;
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private BookService bookService;
 
     public Page<LendingDTO> getLendings(Boolean pending, Integer numberPage, Integer pageSize, String dni){
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        boolean isUser = SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains( new SimpleGrantedAuthority( "USUARIO" ));
+
+        if (isUser) {
+           dni = userRepository.getUserByUSername(userDetails.getUsername()).getDni();
+        }
         HashMap<String,Object> map = new HashMap<>();
 
         if (pending != null)
@@ -85,16 +94,23 @@ public class LendingService {
         lending.setReturnEstimateDate(c.getTime());
         lendingRepository.save(lending);
 
+        bookService.updateAvailable(book);
     }
 
     public LendingDTO  returnLending (Long id){
         Lending lending = lendingRepository.findById(id).orElseThrow(()-> new BadRequestException("no se encontro el prestamo"));
+
+        if (lending.getDateReturn()!= null) {
+            throw  new BadRequestException("El libro ya fue devuelto");
+        }
+
         lending.setDateReturn(new Date());
         lendingRepository.save(lending);
 
         LendingDTO lendingDTO = new LendingDTO();
         lendingDTO.setId(lending.getId());
-        lendingDTO.setUser(lending.getUser());
+        lendingDTO.setUserAppId(lending.getUser().getId());
+        lendingDTO.setBookId(lending.getBook().getId());
         lendingDTO.setDateOut(lending.getDateOut());
         lendingDTO.setDateReturn(lending.getDateReturn());
         lendingDTO.setReturnEstimateDate(lending.getReturnEstimateDate());
@@ -103,7 +119,12 @@ public class LendingService {
         lendingDTO.setSanctions(sanctionDay);
         lendingDTO.setSancMoney(lendingDTO.getSanctions()*5);
 
+        bookService.updateAvailable(lending.getBook());
         return lendingDTO;
     }
+
+
+
+
 
 }
