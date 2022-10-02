@@ -1,11 +1,19 @@
-<h1>Dashboard Usuario</h1>
-<hr>
+<div *ngIf="rol==='ADMINISTRADOR'">
+    <h1>Dashboard Administrador</h1>
+    <h4>Biblioteca Popular Los Lectores</h4>
+    
+    <hr>
+</div>
 
-<p>
+<div *ngIf="rol==='USUARIO'">
+    <h1>Dashboard Usuario</h1>
+    <h4>Biblioteca Popular Los Lectores</h4>
+    
+    <hr>
 
-AUTENTICADO OK. 
 
-</p>
+FELICIDADES, ERES UN SIMPLE USER.  
+
 
 <h4> Info de User </h4>
 <pre>  {{ usuario | json}} </pre>

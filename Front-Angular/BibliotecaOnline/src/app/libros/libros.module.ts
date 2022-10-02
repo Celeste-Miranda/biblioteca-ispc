@@ -12,7 +12,7 @@ import { BanderaPipe } from './pipes/bandera.pipe';
 import { DisponibilidadPipe } from './pipes/disponibilidad.pipe';
 import { DisponibilidadTextPipe } from './pipes/disponibilidad-text.pipe';
 import { LibrosRoutingModule } from './libros-routing.module';
-
+import {ConfirmationService} from 'primeng/api';
 
 
 @NgModule({
@@ -37,6 +37,9 @@ import { LibrosRoutingModule } from './libros-routing.module';
     BuscadorComponent,
     BibliotecaComponent,
     LibroComponent
+  ],
+  providers: [
+    ConfirmationService
   ]
 })
 export class LibrosModule { }

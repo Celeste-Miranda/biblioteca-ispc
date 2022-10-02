@@ -1,5 +1,6 @@
 package com.example.bibliotecaApp.controller;
 
+import com.example.bibliotecaApp.entity.NewUserResponse;
 import com.example.bibliotecaApp.entity.UserApp;
 import com.example.bibliotecaApp.exception.InvalidDataException;
 import com.example.bibliotecaApp.security.dto.UserLogin;
@@ -39,9 +40,17 @@ public class UserController {
     @PostMapping ("/register")
     public ResponseEntity<?> nuevo(@Valid @RequestBody UserApp userApp, BindingResult bindingResult){
 
-        userService.createUser(userApp,bindingResult);
+        if(bindingResult.hasErrors()){
+            NewUserResponse newUserResponse = new NewUserResponse(false, "Error en el registro, uno o mas campos presentan errores");
 
-        return new ResponseEntity("usuario guardado con éxito", HttpStatus.CREATED);
+            return new ResponseEntity(newUserResponse, HttpStatus.BAD_REQUEST);
+
+        }
+
+        userService.createUser(userApp,bindingResult);
+        NewUserResponse newUserResponse = new NewUserResponse(true, "Usuario creado correctamente");
+
+        return new ResponseEntity(newUserResponse, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
