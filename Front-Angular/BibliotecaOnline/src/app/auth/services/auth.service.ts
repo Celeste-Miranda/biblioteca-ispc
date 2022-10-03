@@ -30,9 +30,6 @@ export class AuthService {
     tap( resp => {
       if (resp.ok === true) {
         console.log('Registro exitoso') //Confia en mi typescript ermozo
-        this._user = {
-          username: resp.username!
-        }
       }
     }),
     map(resp => of(resp.ok)),
@@ -42,7 +39,7 @@ export class AuthService {
   }
 
 
-  
+
 
   login ( username: string, password: string ) {
 
@@ -53,10 +50,9 @@ export class AuthService {
    .pipe(
     tap( resp => {
       if (resp.bearer === "Bearer") {
-        localStorage.setItem('token' , ('Bearer ' + resp.token!)) //Confia en mi typescript ermozo
-        this._user = {
-          username: resp.username!
-        }
+        localStorage.setItem('token' , ('Bearer ' + resp.token!)) //Se antepone el bearer para que header funcione bien
+        localStorage.setItem('username', resp.username!);
+        localStorage.setItem('role', resp.role!);
       }
     }),
     map(resp => of(resp.bearer)),
@@ -66,10 +62,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token'); // Solo borra el token. Si es todo hacer Clear()
+    localStorage.clear();
   }
 
-  //PARA HACER/TESTEAR
+
   validarToken(): Observable<boolean> {
 
     const url = `${this.baseUrl}/valid`;
@@ -78,12 +74,14 @@ export class AuthService {
     return this.http.get<AuthResponse>(url, { headers })
     .pipe(
       map( resp => {
+        this._user = {
+          username: resp.username!
+        }
         return true
       }), catchError (err => of(false))
     );
 
-//SETEAR EN EL LOCALSTORAGE el token como  "Bearer (espacio) valordelToken" para que tome bien 
-//SHA ESTÁ ESHHOOO
+
   }
 
 

@@ -1,15 +1,53 @@
-<h1>Dashboard Usuario</h1>
-<hr>
+<div *ngIf="rol==='ADMINISTRADOR'">
+    <h1>Dashboard Administrador</h1>
+    <h4>Biblioteca Popular Los Lectores</h4>
+    
+    <hr>
+</div>
 
-<p>
+<div *ngIf="rol==='USUARIO'">
+    <h1>Dashboard Usuario</h1>
+    <h4>Biblioteca Popular Los Lectores</h4>
+    
+    <hr>
 
-AUTENTICADO OK. 
+    <div class="align-items-center flex justify-content-center lg:px-8 md:px-6 px-4 py-8 surface-ground ng-star-inserted">
 
-</p>
+<p-panel header="Devoluciones y Sanciones">
+   N° Sanciones: 0  -- Costo Sanciones: $0 
+   <hr>
+   Libros pendientes de devolución: 1
 
-<h4> Info de User </h4>
-<pre>  {{ usuario | json}} </pre>
+</p-panel>
+</div>
 
+    <p-fieldset legend="Prestamos">
+    
+
+        <p-table [value]="nothing" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Libro</th>
+                    <th>Fecha de Prestamo</th>
+                    <th>Fecha Limite de Devolución</th>
+                    <th>Fecha de Devolución </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-Nothing>
+                <tr>
+                    <td>{{nothing}}</td>
+                    <td>{{nothing}}</td>
+                    <td>{{nothing}}</td>
+                    <td>{{nothing}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+
+
+    </p-fieldset>
+    
 
 <button (click)="logout()">
 
