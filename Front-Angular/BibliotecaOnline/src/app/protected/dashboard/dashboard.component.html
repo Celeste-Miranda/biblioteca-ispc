@@ -1,9 +1,22 @@
+
+<!--   PANEL DE ADMIN       -->
+
 <div *ngIf="rol==='ADMINISTRADOR'">
     <h1>Dashboard Administrador</h1>
     <h4>Biblioteca Popular Los Lectores</h4>
     
     <hr>
 </div>
+
+
+
+
+
+
+
+<!--   PANEL DE USUARIO       -->
+
+
 
 <div *ngIf="rol==='USUARIO'">
     <h1>Dashboard Usuario</h1>
@@ -16,7 +29,7 @@
 <p-panel header="Devoluciones y Sanciones">
    N° Sanciones: 0  -- Costo Sanciones: $0 
    <hr>
-   Libros pendientes de devolución: 1
+   Libros pendientes de devolución:  {{lendings.length}}
 
 </p-panel>
 </div>
@@ -24,7 +37,7 @@
     <p-fieldset legend="Prestamos">
     
 
-        <p-table [value]="nothing" responsiveLayout="scroll">
+        <p-table [value]="lendings" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Libro</th>
@@ -33,23 +46,23 @@
                     <th>Fecha de Devolución </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-Nothing>
+            <ng-template pTemplate="body" let-lendings>
                 <tr>
-                    <td>{{nothing}}</td>
-                    <td>{{nothing}}</td>
-                    <td>{{nothing}}</td>
-                    <td>{{nothing}}</td>
+                    <td>{{lendings.bookId}}</td>
+                    <td>{{lendings.dateOut}}</td>
+                    <td>{{lendings.returnEstimateDate}}</td>
+                    <td>{{lendings.dateReturn}}</td>
                 </tr>
             </ng-template>
         </p-table>
+ 
+ 
 
-
-
-
+ 
     </p-fieldset>
     
+ 
+<button (click)="traerlosLendings()">
 
-<button (click)="logout()">
-
-Logout
+Refrescar Prestamos
 </button>
