@@ -8,6 +8,11 @@ export interface AuthResponse{
      bearer? : string
      username?: string
      role?: string
+     usText?: [
+            {
+                error : string
+            }
+     ]
 }
 
 export interface User { 

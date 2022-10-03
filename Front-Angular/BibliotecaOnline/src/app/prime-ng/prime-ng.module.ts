@@ -11,7 +11,11 @@ import { ChipModule } from 'primeng/chip';
 import {CheckboxModule} from 'primeng/checkbox';
 import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {Panel, PanelModule} from 'primeng/panel';
+import {Toast, ToastModule} from 'primeng/toast';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [],
@@ -26,7 +30,15 @@ exports: [
     ChipModule,
     CheckboxModule,
     TriStateCheckboxModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    PanelModule,
+    ToastModule,
+    MessagesModule,
+    MessageModule
+  ],
+  providers: [
+    MessageService
+
   ]
 })
 export class PrimeNgModule { }

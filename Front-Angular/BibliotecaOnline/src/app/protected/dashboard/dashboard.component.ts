@@ -10,6 +10,9 @@ import { AuthService } from '../../auth/services/auth.service';
 export class DashboardComponent implements OnInit{
 rol: string = localStorage.getItem('role') || '';
 
+
+nothing = [] = []; 
+
   get usuario() {
 
     return this.authService.user; 

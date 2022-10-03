@@ -65,7 +65,7 @@ export class AuthService {
     localStorage.clear();
   }
 
-  //PARA HACER/TESTEAR
+
   validarToken(): Observable<boolean> {
 
     const url = `${this.baseUrl}/valid`;
@@ -81,8 +81,7 @@ export class AuthService {
       }), catchError (err => of(false))
     );
 
-//SETEAR EN EL LOCALSTORAGE el token como  "Bearer (espacio) valordelToken" para que tome bien 
-//SHA ESTÁ ESHHOOO
+
   }
 
 
