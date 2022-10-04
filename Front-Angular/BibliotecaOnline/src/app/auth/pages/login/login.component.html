@@ -35,6 +35,12 @@
                 [disabled]="miFormulario.invalid"
                 icon="pi pi-user" 
                 class="w-full"></button>
+
+                <div *ngIf="problema">
+                    <br>
+                    <br>
+                    <p-message severity="error" text="Error al iniciar sesión. Revise que su contraseña y email estén correctos, o que la cuenta exista." styleClass="mr-2"></p-message> 
+                </div>
             </form>
         </div>
         

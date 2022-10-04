@@ -19,21 +19,13 @@ export class LoginComponent implements OnInit{
 
   });
 
+  problema: boolean = false; 
   constructor( private fb: FormBuilder,
               private router: Router,
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    if( window.localStorage )
-    {
-      if( !localStorage.getItem('firstLoad') )
-      {
-        localStorage['firstLoad'] = true;
-        window.location.reload();
-      }
-      else
-        localStorage.removeItem('firstLoad');
-    }
+  
   }
 
 login(){
@@ -49,7 +41,8 @@ login(){
     
   } else {
     //MOSTRAR MENSAJE ERROR
-    console.log("ERROR PAPÁ")
+    console.log("ERROR DE LOGUEO")
+    this.problema= true; 
   }
  });
   //this.router.navigateByUrl('/dashboard')

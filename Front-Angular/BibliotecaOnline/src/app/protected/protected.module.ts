@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TablaLendingsComponent } from './components/tabla-lendings/tabla-lendings.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -16,7 +16,9 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
     CommonModule,
     ProtectedRoutingModule,
     FieldsetModule,
-    PrimeNgModule
+    PrimeNgModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProtectedModule { }

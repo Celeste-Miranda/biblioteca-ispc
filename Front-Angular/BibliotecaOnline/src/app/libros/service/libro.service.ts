@@ -27,7 +27,7 @@ export class LibrosService {
       
         const url = `${ this.apiUrl }/books/${id}`;
         
-        return this.http.get<Libro>(url); //retorna solo un pais no un arreglo
+        return this.http.get<Libro>(url); //retorna solo un libro no un arreglo
     
       }
 
@@ -59,5 +59,15 @@ export class LibrosService {
     
        return this.http.post<any[]>(url, body, {headers})
 
+}
+
+borrarLibro(libroId: string){
+
+  const url = `${ this.apiUrl}/lendings/${libroId}`;
+  const body = { libroId };
+  const headers = new HttpHeaders()
+        .set('Authorization',localStorage.getItem('token') || ''); // o String vacio. 
+
+ return this.http.post<any>(   url, body, {headers})
 }
 }
