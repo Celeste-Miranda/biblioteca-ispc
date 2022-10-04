@@ -1,4 +1,9 @@
 export interface AuthResponse{
+
+    headers : {
+        status: number, 
+        message: string
+    },
      ok?: boolean;
      status?: number
      message?: string

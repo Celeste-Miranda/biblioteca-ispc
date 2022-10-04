@@ -28,12 +28,12 @@ export class AuthService {
    return this.http.post<AuthResponse>(url, body)
    .pipe(
     tap( resp => {
-      if (resp.ok === true) {
-        console.log('Registro exitoso') //Confia en mi typescript ermozo
+      if (resp.headers.status === 201) {
+console.log('exitoso')
       }
     }),
-    map(resp => of(resp.ok)),
-    catchError(err => of(false))
+   //map(resp => of(resp.status === 204)),
+  //  catchError(err => of(false))
      
    )
   }

@@ -6,6 +6,7 @@
 package com.example.bibliotecaApp.repository;
 
 import com.example.bibliotecaApp.entity.Book;
+
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,9 +22,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("SELECT m FROM Book m WHERE m.title LIKE %:title%")
     List<Book> searchByTitleLike(@Param("title") String title);
-
-    @Query("SELECT m FROM Book m WHERE m.title LIKE %:title% AND m.")
-    List<Book> searchByTitleLikeAndPending(@Param("title") String title);
 
     @Query("SELECT m FROM Book m WHERE m.id = :id")
     Book searchById(@Param("id") Long id);

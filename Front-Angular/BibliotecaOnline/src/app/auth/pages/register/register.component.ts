@@ -33,10 +33,12 @@ register(){
 
 
   this.authService.register(name, lastname, address, tel, dni, userCredential)
-  .subscribe(ok => {
-    if (ok) { 
+  .subscribe(resp => {
+    if (resp.headers.status === 201) { 
+      console.log(resp)
       this.router.navigateByUrl('/auth/login');
     } else {
+      alert("Error al registrarse");
       console.log("Error en el registro");
     }
   })
