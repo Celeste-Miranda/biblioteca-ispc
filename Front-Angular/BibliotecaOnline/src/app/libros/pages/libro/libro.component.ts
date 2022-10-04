@@ -61,23 +61,15 @@ export class LibroComponent implements OnInit {
 
 
 reservar(libroId : number) {
-  this.librosService.userLending(libroId).subscribe ({
-    next: data => {
-      
-      console.log(data.toString());
-      this.messageService.add({severity:'success', summary: 'Reserva', detail: this.respuesta.toString()});
-      //Por alguna razon, todo lo que recibe de este endpoint lo traduce como "Error" 
-    },
-    error: err => {
-      this.respuesta = err.error.status;
-      if(this.respuesta===400) { 
-      this.messageService.add({severity:'error', summary: 'Reserva', detail: err.error.message});
-      this.respuesta = 0;
-      }
-      else 
-      this.messageService.add({severity:'success', summary: 'Reserva', detail: 'Se ha realizado la reserva con éxito'});
-      this.respuesta = 0;
-    }
+  this.librosService.userLending(libroId).subscribe(resp => {
+    console.log(resp)
+    alert('Reserva Exitosa')
+    window.location.href = '/dashboard';
+    
+  },err => {
+    alert(err.error.message)
+    console.log(err)
+
   })
   
   
