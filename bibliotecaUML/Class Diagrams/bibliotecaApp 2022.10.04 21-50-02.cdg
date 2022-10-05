@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="bibliotecaApp">
+  <ClassDiagramComponents>
+    <Class name="BibliotecaAppApplication" package="com.example.bibliotecaApp" visibility="public" xPosition="-2.0" yPosition="39.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="corsConfigurer" returnType="WebMvcConfigurer" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="BookController" package="com.example.bibliotecaApp.controller" visibility="public" xPosition="578.0" yPosition="274.0">
+      <Fields>
+        <Field name="bookService" type="BookService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getBook" returnType="ResponseEntity&lt;Book[]&gt;" visibility="public">
+          <Argument type="String" name="title"/>
+        </Method>
+        <Method name="getBookById" returnType="ResponseEntity&lt;Book&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="createBook" returnType="ResponseEntity&lt;Long&gt;" visibility="public">
+          <Argument type="Book" name="book"/>
+          <Argument type="BindingResult" name="bindingResult"/>
+        </Method>
+        <Method name="updateBook" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="Book" name="book"/>
+          <Argument type="BindingResult" name="bindingResult"/>
+        </Method>
+        <Method name="deleteBook" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LendingController" package="com.example.bibliotecaApp.controller" visibility="public" xPosition="443.0" yPosition="1.0">
+      <Fields>
+        <Field name="lendingService" type="LendingService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getAllLending" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Boolean" name="pending"/>
+          <Argument type="Integer" name="numberPage"/>
+          <Argument type="Integer" name="pageSize"/>
+          <Argument type="String" name="dni"/>
+        </Method>
+        <Method name="createLending" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="LendingDtoRequest" name="lendingDTORequest"/>
+        </Method>
+        <Method name="createLending" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RestExceptionHandler" package="com.example.bibliotecaApp.controller" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="handleException" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="protected">
+          <Argument type="NoSuchElementException" name="exc"/>
+        </Method>
+        <Method name="handleException" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="protected">
+          <Argument type="DuplicateKeyException" name="exc"/>
+        </Method>
+        <Method name="handleException" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="protected">
+          <Argument type="IllegalArgumentException" name="exc"/>
+        </Method>
+        <Method name="handleException" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="protected">
+          <Argument type="InvalidDataException" name="exc"/>
+        </Method>
+        <Method name="handleException" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="protected">
+          <Argument type="MethodArgumentTypeMismatchException" name="exc"/>
+        </Method>
+        <Method name="handleException" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="protected">
+          <Argument type="BadRequestException" name="exc"/>
+        </Method>
+        <Method name="handleException" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="protected">
+          <Argument type="Exception" name="exc"/>
+        </Method>
+        <Method name="buildResponseEntity" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="private">
+          <Argument type="HttpStatus" name="httpStatus"/>
+          <Argument type="Exception" name="exc"/>
+        </Method>
+        <Method name="buildResponseEntity" returnType="ResponseEntity&lt;ErrorApp&gt;" visibility="private">
+          <Argument type="HttpStatus" name="httpStatus"/>
+          <Argument type="Exception" name="exc"/>
+          <Argument type="List&lt;String&gt;" name="errors"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserController" package="com.example.bibliotecaApp.controller" visibility="public" xPosition="353.0" yPosition="567.0">
+      <Fields>
+        <Field name="userService" type="UserServiceImpl" visibility="private"/>
+        <Field name="authenticationManager" type="AuthenticationManager" visibility="private"/>
+        <Field name="jwtProvider" type="JwtProvider" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="nuevo" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="UserApp" name="userApp"/>
+          <Argument type="BindingResult" name="bindingResult"/>
+        </Method>
+        <Method name="login" returnType="ResponseEntity&lt;JwtDto&gt;" visibility="public">
+          <Argument type="UserLogin" name="userCredential"/>
+          <Argument type="BindingResult" name="bindingResult"/>
+        </Method>
+        <Method name="newUSer" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="UserApp" name="userApp"/>
+          <Argument type="BindingResult" name="bindingResult"/>
+        </Method>
+        <Method name="getUSers" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Integer" name="pageSize"/>
+          <Argument type="Integer" name="numberPage"/>
+          <Argument type="String" name="dni"/>
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="lastname"/>
+        </Method>
+        <Method name="deleteUser" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="updateUser" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="UserApp" name="userApp"/>
+        </Method>
+        <Method name="getUserDetail" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getUservalid" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="HttpServletRequest" name="request"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Book" package="com.example.bibliotecaApp.entity" visibility="public" xPosition="1890.0" yPosition="678.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="title" type="String" visibility="private"/>
+        <Field name="date" type="String" visibility="private"/>
+        <Field name="createdAt" type="Date" visibility="private"/>
+        <Field name="author" type="String" visibility="private"/>
+        <Field name="available" type="Integer" visibility="private"/>
+        <Field name="stock" type="Integer" visibility="private"/>
+        <Field name="category" type="String" visibility="private"/>
+        <Field name="description" type="String" visibility="private"/>
+        <Field name="ejemplares" type="Integer" visibility="private"/>
+        <Field name="lang" type="String" visibility="private"/>
+        <Field name="pages" type="Integer" visibility="private"/>
+        <Field name="edit" type="String" visibility="private"/>
+        <Field name="img" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getTitle" returnType="String" visibility="public"/>
+        <Method name="setTitle" returnType="void" visibility="public">
+          <Argument type="String" name="title"/>
+        </Method>
+        <Method name="getAuthor" returnType="String" visibility="public"/>
+        <Method name="setAuthor" returnType="void" visibility="public">
+          <Argument type="String" name="author"/>
+        </Method>
+        <Method name="getAvailable" returnType="Integer" visibility="public"/>
+        <Method name="setAvailable" returnType="void" visibility="public">
+          <Argument type="Integer" name="available"/>
+        </Method>
+        <Method name="getStock" returnType="Integer" visibility="public"/>
+        <Method name="setStock" returnType="void" visibility="public">
+          <Argument type="Integer" name="stock"/>
+        </Method>
+        <Method name="getCategory" returnType="String" visibility="public"/>
+        <Method name="setCategory" returnType="void" visibility="public">
+          <Argument type="String" name="category"/>
+        </Method>
+        <Method name="getDescription" returnType="String" visibility="public"/>
+        <Method name="setDescription" returnType="void" visibility="public">
+          <Argument type="String" name="description"/>
+        </Method>
+        <Method name="getLang" returnType="String" visibility="public"/>
+        <Method name="setLang" returnType="void" visibility="public">
+          <Argument type="String" name="lang"/>
+        </Method>
+        <Method name="getPages" returnType="Integer" visibility="public"/>
+        <Method name="setPages" returnType="void" visibility="public">
+          <Argument type="Integer" name="pages"/>
+        </Method>
+        <Method name="getEdit" returnType="String" visibility="public"/>
+        <Method name="setEdit" returnType="void" visibility="public">
+          <Argument type="String" name="edit"/>
+        </Method>
+        <Method name="getImg" returnType="String" visibility="public"/>
+        <Method name="setImg" returnType="void" visibility="public">
+          <Argument type="String" name="img"/>
+        </Method>
+        <Method name="getDate" returnType="String" visibility="public"/>
+        <Method name="setDate" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+        </Method>
+        <Method name="getCreatedAt" returnType="Date" visibility="public"/>
+        <Method name="setCreatedAt" returnType="void" visibility="public">
+          <Argument type="Date" name="createdAt"/>
+        </Method>
+        <Method name="getEjemplares" returnType="Integer" visibility="public"/>
+        <Method name="setEjemplares" returnType="void" visibility="public">
+          <Argument type="Integer" name="ejemplares"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Lending" package="com.example.bibliotecaApp.entity" visibility="public" xPosition="1922.0" yPosition="67.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="userApp" type="UserApp" visibility="private"/>
+        <Field name="book" type="Book" visibility="private"/>
+        <Field name="dateOut" type="Date" visibility="private"/>
+        <Field name="dateReturn" type="Date" visibility="private"/>
+        <Field name="returnEstimateDate" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="UserApp" name="userApp"/>
+          <Argument type="Book" name="book"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getUser" returnType="UserApp" visibility="public"/>
+        <Method name="setUser" returnType="void" visibility="public">
+          <Argument type="UserApp" name="userApp"/>
+        </Method>
+        <Method name="getBook" returnType="Book" visibility="public"/>
+        <Method name="setBook" returnType="void" visibility="public">
+          <Argument type="Book" name="book"/>
+        </Method>
+        <Method name="getDateOut" returnType="Date" visibility="public"/>
+        <Method name="setDateOut" returnType="void" visibility="public">
+          <Argument type="Date" name="dateOut"/>
+        </Method>
+        <Method name="getDateReturn" returnType="Date" visibility="public"/>
+        <Method name="setDateReturn" returnType="void" visibility="public">
+          <Argument type="Date" name="dateReturn"/>
+        </Method>
+        <Method name="getReturnEstimateDate" returnType="Date" visibility="public"/>
+        <Method name="setReturnEstimateDate" returnType="void" visibility="public">
+          <Argument type="Date" name="returnEstimateDate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LendingDTO" package="com.example.bibliotecaApp.entity" visibility="public" xPosition="1212.0" yPosition="192.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="userAppId" type="Long" visibility="private"/>
+        <Field name="bookId" type="Long" visibility="private"/>
+        <Field name="dateOut" type="Date" visibility="private"/>
+        <Field name="dateReturn" type="Date" visibility="private"/>
+        <Field name="returnEstimateDate" type="Date" visibility="private"/>
+        <Field name="sanctions" type="Integer" visibility="private"/>
+        <Field name="sancMoney" type="Integer" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="Long" name="userAppId"/>
+          <Argument type="Long" name="bookId"/>
+          <Argument type="Date" name="dateOut"/>
+          <Argument type="Date" name="dateReturn"/>
+          <Argument type="Date" name="returnEstimateDate"/>
+          <Argument type="Integer" name="sanctions"/>
+          <Argument type="Integer" name="sancMoney"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getUserAppId" returnType="Long" visibility="public"/>
+        <Method name="setUserAppId" returnType="void" visibility="public">
+          <Argument type="Long" name="userAppId"/>
+        </Method>
+        <Method name="getBookId" returnType="Long" visibility="public"/>
+        <Method name="setBookId" returnType="void" visibility="public">
+          <Argument type="Long" name="bookId"/>
+        </Method>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getDateOut" returnType="Date" visibility="public"/>
+        <Method name="setDateOut" returnType="void" visibility="public">
+          <Argument type="Date" name="dateOut"/>
+        </Method>
+        <Method name="getDateReturn" returnType="Date" visibility="public"/>
+        <Method name="setDateReturn" returnType="void" visibility="public">
+          <Argument type="Date" name="dateReturn"/>
+        </Method>
+        <Method name="getReturnEstimateDate" returnType="Date" visibility="public"/>
+        <Method name="setReturnEstimateDate" returnType="void" visibility="public">
+          <Argument type="Date" name="returnEstimateDate"/>
+        </Method>
+        <Method name="getSanctions" returnType="Integer" visibility="public"/>
+        <Method name="setSanctions" returnType="void" visibility="public">
+          <Argument type="Integer" name="sanctions"/>
+        </Method>
+        <Method name="getSancMoney" returnType="Integer" visibility="public"/>
+        <Method name="setSancMoney" returnType="void" visibility="public">
+          <Argument type="Integer" name="sancMoney"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LendingDtoRequest" package="com.example.bibliotecaApp.entity" visibility="public" xPosition="370.0" yPosition="248.0">
+      <Fields>
+        <Field name="userId" type="Long" visibility="private"/>
+        <Field name="bookId" type="Long" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="ResponseLendings" package="com.example.bibliotecaApp.entity" visibility="public" xPosition="1998.0" yPosition="792.0">
+      <Fields>
+        <Field name="totalElement" type="Long" visibility="private"/>
+        <Field name="response" type="List&lt;LendingDTO&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Long" name="totalElement"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Long" name="totalElement"/>
+          <Argument type="List&lt;LendingDTO&gt;" name="response"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTotalElement" returnType="Long" visibility="public"/>
+        <Method name="setTotalElement" returnType="void" visibility="public">
+          <Argument type="Long" name="totalElement"/>
+        </Method>
+        <Method name="getResponse" returnType="List&lt;LendingDTO&gt;" visibility="public"/>
+        <Method name="setResponse" returnType="void" visibility="public">
+          <Argument type="List&lt;LendingDTO&gt;" name="response"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserApp" package="com.example.bibliotecaApp.entity" visibility="public" xPosition="528.0" yPosition="1027.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="lastname" type="String" visibility="private"/>
+        <Field name="address" type="String" visibility="private"/>
+        <Field name="tel" type="String" visibility="private"/>
+        <Field name="sanctions" type="Integer" visibility="private"/>
+        <Field name="sancMoney" type="Integer" visibility="private"/>
+        <Field name="userCredential" type="UserCredential" visibility="private"/>
+        <Field name="dni" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="lastname"/>
+          <Argument type="String" name="address"/>
+          <Argument type="String" name="tel"/>
+          <Argument type="Integer" name="sanctions"/>
+          <Argument type="Integer" name="sancMoney"/>
+          <Argument type="UserCredential" name="userCredential"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getLastname" returnType="String" visibility="public"/>
+        <Method name="setLastname" returnType="void" visibility="public">
+          <Argument type="String" name="lastname"/>
+        </Method>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="setAddress" returnType="void" visibility="public">
+          <Argument type="String" name="address"/>
+        </Method>
+        <Method name="getTel" returnType="String" visibility="public"/>
+        <Method name="setTel" returnType="void" visibility="public">
+          <Argument type="String" name="tel"/>
+        </Method>
+        <Method name="getSanctions" returnType="Integer" visibility="public"/>
+        <Method name="setSanctions" returnType="void" visibility="public">
+          <Argument type="Integer" name="sanctions"/>
+        </Method>
+        <Method name="getSancMoney" returnType="Integer" visibility="public"/>
+        <Method name="setSancMoney" returnType="void" visibility="public">
+          <Argument type="Integer" name="sancMoney"/>
+        </Method>
+        <Method name="getDni" returnType="String" visibility="public"/>
+        <Method name="setDni" returnType="void" visibility="public">
+          <Argument type="String" name="dni"/>
+        </Method>
+        <Method name="getUserCredential" returnType="UserCredential" visibility="public"/>
+        <Method name="setUserCredential" returnType="void" visibility="public">
+          <Argument type="UserCredential" name="userCredential"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserCredential" package="com.example.bibliotecaApp.entity" visibility="public" xPosition="888.0" yPosition="554.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="role" type="ROLE" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="ROLE" name="role"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="setUsername" returnType="void" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="getAuthorities" returnType="Collection&lt;? extends GrantedAuthority&gt;" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="isAccountNonExpired" returnType="boolean" visibility="public"/>
+        <Method name="isAccountNonLocked" returnType="boolean" visibility="public"/>
+        <Method name="isCredentialsNonExpired" returnType="boolean" visibility="public"/>
+        <Method name="isEnabled" returnType="boolean" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="getRole" returnType="ROLE" visibility="public"/>
+        <Method name="setRole" returnType="void" visibility="public">
+          <Argument type="ROLE" name="role"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BadRequestException" package="com.example.bibliotecaApp.exception" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="serialVersionUID" type="long" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="message"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ErrorApp" package="com.example.bibliotecaApp.exception" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="status" type="int" visibility="private"/>
+        <Field name="message" type="String" visibility="private"/>
+        <Field name="timestamp" type="Date" visibility="private"/>
+        <Field name="errors" type="List&lt;String&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="message"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="InvalidDataException" package="com.example.bibliotecaApp.exception" visibility="public" xPosition="1772.0" yPosition="1578.0">
+      <Fields>
+        <Field name="serialVersionUID" type="long" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="result" type="BindingResult" visibility="private" isFinal="true" isTransient="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="BindingResult" name="result"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="message"/>
+          <Argument type="BindingResult" name="result"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getResult" returnType="BindingResult" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LendingRepositoryImpl" package="com.example.bibliotecaApp.repository" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="entityManager" type="EntityManager" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getLending" returnType="Page&lt;LendingDTO&gt;" visibility="public">
+          <Argument type="HashMap&lt;String, Object&gt;" name="conditions"/>
+        </Method>
+        <Method name="getCountCategories" returnType="Long" visibility="public">
+          <Argument type="HashMap&lt;String, Object&gt;" name="conditions"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserLogin" package="com.example.bibliotecaApp.security.dto" visibility="public" xPosition="13.0" yPosition="557.0">
+      <Fields>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="JwtDto" package="com.example.bibliotecaApp.security.jwt" visibility="public" xPosition="207.0" yPosition="515.0">
+      <Fields>
+        <Field name="token" type="String" visibility="private"/>
+        <Field name="bearer" type="String" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="role" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="jwt"/>
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="role"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="JwtEntryPoint" package="com.example.bibliotecaApp.security.jwt" visibility="public" xPosition="-38.0" yPosition="1570.0">
+      <Fields>
+        <Field name="logger" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="commence" returnType="void" visibility="public">
+          <Argument type="HttpServletRequest" name="req"/>
+          <Argument type="HttpServletResponse" name="res"/>
+          <Argument type="AuthenticationException" name="ae"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="JwtProvider" package="com.example.bibliotecaApp.security.jwt" visibility="public" xPosition="13.0" yPosition="763.0">
+      <Fields>
+        <Field name="logger" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="secret" type="String" visibility="private"/>
+        <Field name="expiration" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="generateToken" returnType="String" visibility="public">
+          <Argument type="Authentication" name="authentication"/>
+        </Method>
+        <Method name="getUsernameFromToken" returnType="String" visibility="public">
+          <Argument type="String" name="token"/>
+        </Method>
+        <Method name="validateToken" returnType="boolean" visibility="public">
+          <Argument type="String" name="token"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="JwtTokenFilter" package="com.example.bibliotecaApp.security.jwt" visibility="public" xPosition="-35.0" yPosition="1047.0">
+      <Fields>
+        <Field name="logger" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="jwtProvider" type="JwtProvider" visibility="package"/>
+        <Field name="userServiceImpl" type="UserServiceImpl" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="doFilterInternal" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="req"/>
+          <Argument type="HttpServletResponse" name="res"/>
+          <Argument type="FilterChain" name="fc"/>
+        </Method>
+        <Method name="getToken" returnType="String" visibility="private">
+          <Argument type="HttpServletRequest" name="request"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SecurityConfig" package="com.example.bibliotecaApp.security" visibility="public" xPosition="-2.0" yPosition="1236.0">
+      <Fields>
+        <Field name="userDetailsService" type="UserDetailsService" visibility="private"/>
+        <Field name="jwtEntryPoint" type="JwtEntryPoint" visibility="private"/>
+        <Field name="userService" type="UserServiceImpl" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="encoder" returnType="BCryptPasswordEncoder" visibility="public" isStatic="true"/>
+        <Method name="configure" returnType="void" visibility="public">
+          <Argument type="AuthenticationManagerBuilder" name="auth"/>
+        </Method>
+        <Method name="configure" returnType="void" visibility="public">
+          <Argument type="HttpSecurity" name="http"/>
+        </Method>
+        <Method name="jwtTokenFilter" returnType="JwtTokenFilter" visibility="public"/>
+        <Method name="authenticationManagerBean" returnType="AuthenticationManager" visibility="public"/>
+        <Method name="authenticationManager" returnType="AuthenticationManager" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="BookService" package="com.example.bibliotecaApp.service" visibility="public" xPosition="1006.0" yPosition="1473.0">
+      <Fields>
+        <Field name="bookRepository" type="BookRepository" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getBookByTitleLike" returnType="List&lt;Book&gt;" visibility="public">
+          <Argument type="String" name="title"/>
+        </Method>
+        <Method name="getBookById" returnType="Book" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="createBook" returnType="Long" visibility="public">
+          <Argument type="Book" name="book"/>
+          <Argument type="BindingResult" name="bindingResult"/>
+        </Method>
+        <Method name="uploadFile" returnType="void" visibility="private">
+          <Argument type="Long" name="idBook"/>
+          <Argument type="MultipartFile" name="file"/>
+        </Method>
+        <Method name="updateBook" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="Book" name="book"/>
+          <Argument type="BindingResult" name="bindingResult"/>
+        </Method>
+        <Method name="updateAvailable" returnType="void" visibility="public">
+          <Argument type="Book" name="oldBook"/>
+        </Method>
+        <Method name="deleteBook" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LendingService" package="com.example.bibliotecaApp.service" visibility="public" xPosition="1337.0" yPosition="1019.0">
+      <Fields>
+        <Field name="lendingRepository" type="LendingRepository" visibility="private"/>
+        <Field name="userRepository" type="UserRepository" visibility="private"/>
+        <Field name="bookRepository" type="BookRepository" visibility="private"/>
+        <Field name="bookService" type="BookService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getLendings" returnType="Page&lt;LendingDTO&gt;" visibility="public">
+          <Argument type="Boolean" name="pending"/>
+          <Argument type="Integer" name="numberPage"/>
+          <Argument type="Integer" name="pageSize"/>
+          <Argument type="String" name="dni"/>
+        </Method>
+        <Method name="calculateDays" returnType="int" visibility="private">
+          <Argument type="Date" name="firstDate"/>
+          <Argument type="Date" name="twoDay"/>
+        </Method>
+        <Method name="createLending" returnType="void" visibility="public">
+          <Argument type="LendingDtoRequest" name="lendingDTORequest"/>
+        </Method>
+        <Method name="returnLending" returnType="LendingDTO" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="BookRepository" package="com.example.bibliotecaApp.repository" visibility="public" xPosition="920.0" yPosition="812.0">
+      <Methods>
+        <Method name="searchByTitleLike" returnType="List&lt;Book&gt;" visibility="package">
+          <Argument type="String" name="title"/>
+        </Method>
+        <Method name="searchById" returnType="Book" visibility="package">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getAvailableById" returnType="Integer" visibility="package">
+          <Argument type="Long" name="idBook"/>
+        </Method>
+        <Method name="existLendingByBookId" returnType="Boolean" visibility="package">
+          <Argument type="Long" name="bookId"/>
+        </Method>
+        <Method name="deleteLendingByBookId" returnType="void" visibility="package">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="deleteBookId" returnType="void" visibility="package">
+          <Argument type="Long" name="id"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="LendingRepository" package="com.example.bibliotecaApp.repository" visibility="public" xPosition="2161.0" yPosition="598.0">
+      <Methods>
+        <Method name="findByDateReturnIsNull" returnType="Page&lt;Lending&gt;" visibility="package">
+          <Argument type="Pageable" name="pageable"/>
+        </Method>
+        <Method name="findByDateReturnIsNotNull" returnType="Page&lt;Lending&gt;" visibility="package">
+          <Argument type="Pageable" name="pageable"/>
+        </Method>
+        <Method name="getLending" returnType="Page&lt;LendingDTO&gt;" visibility="package">
+          <Argument type="HashMap&lt;String, Object&gt;" name="conditions"/>
+        </Method>
+        <Method name="existsLendingByUserApp_IdAndBook_IdAndDateReturnIsNull" returnType="Boolean" visibility="package">
+          <Argument type="Long" name="userId"/>
+          <Argument type="Long" name="bookId"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="UserCredentialRepository" package="com.example.bibliotecaApp.repository" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Methods>
+        <Method name="findByUsername" returnType="UserCredential" visibility="package">
+          <Argument type="String" name="mail"/>
+        </Method>
+        <Method name="existsByUsername" returnType="boolean" visibility="package">
+          <Argument type="String" name="mail"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="UserRepository" package="com.example.bibliotecaApp.repository" visibility="public" xPosition="578.0" yPosition="881.0">
+      <Methods>
+        <Method name="getUserBy" returnType="Page&lt;UserApp&gt;" visibility="package">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="lastname"/>
+          <Argument type="String" name="dni"/>
+          <Argument type="Pageable" name="pageable"/>
+        </Method>
+        <Method name="existLendingByUserId" returnType="Boolean" visibility="package">
+          <Argument type="Long" name="bookId"/>
+        </Method>
+        <Method name="deleteLendingByUserId" returnType="void" visibility="package">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="deleteUserId" returnType="void" visibility="package">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="deleteUserCredentialId" returnType="void" visibility="package">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getUserByUSername" returnType="UserApp" visibility="package">
+          <Argument type="String" name="username"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Enum name="ROLE" package="com.example.bibliotecaApp.enums" visibility="public" xPosition="-2.0" yPosition="420.0">
+      <Literals>
+        <Literal name="ADMINISTRADOR"/>
+        <Literal name="USUARIO"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="com.example.bibliotecaApp.controller.RestExceptionHandler" target="com.example.bibliotecaApp.exception.ErrorApp" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.entity.Lending" target="com.example.bibliotecaApp.entity.UserApp" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.repository.LendingRepository" target="com.example.bibliotecaApp.entity.LendingDTO" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.repository.LendingRepository" target="com.example.bibliotecaApp.entity.Lending" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.service.BookService" target="com.example.bibliotecaApp.entity.Book" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="userRepository" source="com.example.bibliotecaApp.service.LendingService" target="com.example.bibliotecaApp.repository.UserRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.security.SecurityConfig" target="com.example.bibliotecaApp.security.jwt.JwtTokenFilter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bookService" source="com.example.bibliotecaApp.service.LendingService" target="com.example.bibliotecaApp.service.BookService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="role" source="com.example.bibliotecaApp.entity.UserCredential" target="com.example.bibliotecaApp.enums.ROLE" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="jwtProvider" source="com.example.bibliotecaApp.controller.UserController" target="com.example.bibliotecaApp.security.jwt.JwtProvider" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.entity.UserApp" target="com.example.bibliotecaApp.entity.UserCredential" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.controller.UserController" target="com.example.bibliotecaApp.entity.UserApp" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.controller.UserController" target="com.example.bibliotecaApp.security.jwt.JwtDto" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.repository.BookRepository" target="com.example.bibliotecaApp.entity.Book" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bookRepository" source="com.example.bibliotecaApp.service.LendingService" target="com.example.bibliotecaApp.repository.BookRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.repository.LendingRepositoryImpl" target="com.example.bibliotecaApp.entity.LendingDTO" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.service.LendingService" target="com.example.bibliotecaApp.entity.LendingDtoRequest" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.controller.RestExceptionHandler" target="com.example.bibliotecaApp.exception.InvalidDataException" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.repository.UserCredentialRepository" target="com.example.bibliotecaApp.entity.UserCredential" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.service.LendingService" target="com.example.bibliotecaApp.entity.LendingDTO" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.controller.BookController" target="com.example.bibliotecaApp.entity.Book" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bookService" source="com.example.bibliotecaApp.controller.BookController" target="com.example.bibliotecaApp.service.BookService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="jwtEntryPoint" source="com.example.bibliotecaApp.security.SecurityConfig" target="com.example.bibliotecaApp.security.jwt.JwtEntryPoint" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="userCredential" source="com.example.bibliotecaApp.entity.UserApp" target="com.example.bibliotecaApp.entity.UserCredential" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="lendingRepository" source="com.example.bibliotecaApp.service.LendingService" target="com.example.bibliotecaApp.repository.LendingRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.entity.Lending" target="com.example.bibliotecaApp.entity.Book" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="userApp" source="com.example.bibliotecaApp.entity.Lending" target="com.example.bibliotecaApp.entity.UserApp" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="book" source="com.example.bibliotecaApp.entity.Lending" target="com.example.bibliotecaApp.entity.Book" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="response" source="com.example.bibliotecaApp.entity.ResponseLendings" target="com.example.bibliotecaApp.entity.LendingDTO" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;LendingDTO&gt;"/>
+    <HasRelation name="lendingService" source="com.example.bibliotecaApp.controller.LendingController" target="com.example.bibliotecaApp.service.LendingService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.entity.ResponseLendings" target="com.example.bibliotecaApp.entity.LendingDTO" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.controller.LendingController" target="com.example.bibliotecaApp.entity.LendingDtoRequest" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.repository.UserRepository" target="com.example.bibliotecaApp.entity.UserApp" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.example.bibliotecaApp.entity.UserCredential" target="com.example.bibliotecaApp.enums.ROLE" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="jwtProvider" source="com.example.bibliotecaApp.security.jwt.JwtTokenFilter" target="com.example.bibliotecaApp.security.jwt.JwtProvider" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bookRepository" source="com.example.bibliotecaApp.service.BookService" target="com.example.bibliotecaApp.repository.BookRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

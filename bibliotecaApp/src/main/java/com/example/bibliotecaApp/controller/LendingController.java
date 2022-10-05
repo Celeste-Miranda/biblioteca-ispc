@@ -1,13 +1,10 @@
 package com.example.bibliotecaApp.controller;
 
-import com.example.bibliotecaApp.entity.LendingDTO;
 import com.example.bibliotecaApp.entity.LendingDtoRequest;
 import com.example.bibliotecaApp.service.LendingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/lendings")

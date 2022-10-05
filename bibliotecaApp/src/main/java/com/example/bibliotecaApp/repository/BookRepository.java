@@ -35,9 +35,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "    SELECT * " +
             "    FROM lengings " +
             "    WHERE book_id = :bookId " +
-            "     AND date_return IS NOT NULL)" +
-            "THEN CAST(1 AS BIT)" +
-            "ELSE CAST(0 AS BIT) END; " , nativeQuery = true)
+            "     AND date_return IS NOT NULL) " +
+            " THEN CAST(1 AS BIT) " +
+            " ELSE CAST(0 AS BIT) END; " , nativeQuery = true)
     Boolean existLendingByBookId (@Param("bookId") Long bookId);
 
     @Transactional
