@@ -12,13 +12,16 @@ public class Lending {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(columnDefinition = "user_id")
+    @JoinColumn(columnDefinition = "user_app_id")
     private UserApp userApp;
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(columnDefinition = "book_id")
     private Book book;
+    @Temporal(TemporalType.DATE)
     private Date dateOut;
+    @Temporal(TemporalType.DATE)
     private Date dateReturn;
+    @Temporal(TemporalType.DATE)
     private Date returnEstimateDate;
 
     public Lending() {

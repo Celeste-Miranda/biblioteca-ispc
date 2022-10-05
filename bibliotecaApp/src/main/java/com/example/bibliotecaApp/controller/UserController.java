@@ -41,7 +41,7 @@ public class UserController {
 
         userService.createUser(userApp,bindingResult);
 
-        return new ResponseEntity("usuario guardado con éxito", HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PostMapping("/login")

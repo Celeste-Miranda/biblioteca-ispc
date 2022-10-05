@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
 
   miFormulario: FormGroup = this.fb.group({
@@ -19,9 +19,14 @@ export class LoginComponent {
 
   });
 
+  problema: boolean = false; 
   constructor( private fb: FormBuilder,
               private router: Router,
               private authService: AuthService) { }
+
+  ngOnInit(): void {
+  
+  }
 
 login(){
 
@@ -31,10 +36,13 @@ login(){
  .subscribe(ok => {
   // console.log(ok);
   if (ok) {
+    
     this.router.navigateByUrl('/dashboard')
+    
   } else {
     //MOSTRAR MENSAJE ERROR
-    console.log("ERROR PAPÁ")
+    console.log("ERROR DE LOGUEO")
+    this.problema= true; 
   }
  });
   //this.router.navigateByUrl('/dashboard')

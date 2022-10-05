@@ -1,4 +1,9 @@
 export interface AuthResponse{
+
+    headers : {
+        status: number, 
+        message: string
+    },
      ok?: boolean;
      status?: number
      message?: string
@@ -7,6 +12,12 @@ export interface AuthResponse{
      token?: string
      bearer? : string
      username?: string
+     role?: string
+     usText?: [
+            {
+                error : string
+            }
+     ]
 }
 
 export interface User { 

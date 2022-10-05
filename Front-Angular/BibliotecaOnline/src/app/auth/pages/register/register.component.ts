@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ok } from 'assert';
 import { AuthService } from '../../services/auth.service';
+import { catchError, tap } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -32,17 +33,9 @@ register(){
   const {name, lastname, address, tel, dni, userCredential} = this.miFormulario.value;
 
 
+   
   this.authService.register(name, lastname, address, tel, dni, userCredential)
-  .subscribe(ok => {
-    if (ok) { 
-      this.router.navigateByUrl('/auth/login');
-    } else {
-      console.log("Error en el registro");
-    }
-  })
-
-
-  console.log(this.miFormulario.value)
+  
 
 
 

@@ -1,4 +1,4 @@
-<p-menubar [model]="items">
+<p-menubar *ngIf="getUser()===null" [model]="items">
     <ng-template pTemplate="end">
         
         <div class="logotipo">
@@ -7,3 +7,16 @@
     </ng-template>
 
 </p-menubar>
+
+<p-menubar *ngIf="getUser()!=null" [model]="itemsLogueado">
+    <ng-template pTemplate="end">
+        
+        <div class="logotipo">
+        <img src="./favicon.ico" class="icono" ><span>Biblioteca Popular <b> Los Lectores</b></span>
+    </div>
+    </ng-template>
+
+</p-menubar>
+
+
+ 
